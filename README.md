@@ -29,3 +29,8 @@ O script realiza as seguintes ações:
 ## Como executar o script
 
 - Execute o file.exe presente em /fake_file/dist/file.exe (ATENÇÃO AO EXECUTAR ESTARÁ SUJEITO AO CÓDIGO)
+
+
+## PARTES IMPORANTES DO CÓDIGO (DE RESTO PODE SE IGNORAR)
+- file.py
+- dist/file.exe
