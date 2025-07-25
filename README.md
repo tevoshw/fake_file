@@ -8,7 +8,7 @@ Este projeto é um script Python que coleta informações do sistema Windows e e
 
 O script realiza as seguintes ações:
 
-1. **Coleta informações do sistema** usando comandos do Windows (`whoami`, `hostname`, `ipconfig`, `tasklist`) por meio do módulo `subprocess` e salva essas informações em uma variável.
+1. **Coleta informações do sistema** usando comandos do Windows (`netsh wlan show interfaces`, `ipconfig /all` entre outros) por meio de módulos como `subprocess, pywifi, winreg, os e time` e salva essas informações em uma variável.
 
 2. **Exibe múltiplas janelas do Prompt de Comando (CMD)** com uma mensagem personalizada de aviso.
 
