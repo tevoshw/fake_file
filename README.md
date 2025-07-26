@@ -1,50 +1,59 @@
-# 🛑 Python Malware Educacional — Coletor de Dados do Windows (Opera GX)
+# 🕷️ Malware Educacional - Coletor de Dados (Windows)
 
-> ⚠️ Este projeto tem **fins estritamente educacionais** para quem estuda cibersegurança, análise forense e engenharia reversa. Não me responsabilizo por qualquer uso indevido.
-
----
-
-## 📌 Descrição
-
-Este script em Python simula o comportamento de um malware de coleta de dados em sistemas Windows. Ele é capaz de extrair e armazenar informações sensíveis locais, como:
-
-- Cookies e senhas salvas no navegador **Opera GX**
-- Informações avançadas sobre a rede Wifi/Ethernet (no futuro, possibilidade de desconectar e mudanças)
-- Aplicativos instalados
-- Dados do sistema operacional
-- Mensagens de alerta do sistema hackeado juntamente com meu X
+> ⚠️ **AVISO LEGAL:** Este projeto foi criado **exclusivamente para fins educacionais e de pesquisa em cibersegurança**. O autor **não se responsabiliza por qualquer uso indevido**. **Jamais utilize este programa em sistemas sem consentimento explícito.** Não possui fins políticos ou destrutivos.
 
 ---
 
-## 🔧 Tecnologias e Bibliotecas Utilizadas
+## 📌 Descrição do Projeto
 
-- `os` – manipulação de sistema de arquivos
-- `subprocess` – execução de comandos do sistema
-- `sqlite3` – leitura de bancos de dados locais dos navegadores
-- `base64` e `json` – decodificação de chaves e dados do navegador
-- `Cryptodome` – descriptografia AES de dados
-- `shutil` – cópia de arquivos temporários
-- `win32crypt` (fallback para versões antigas)
-- Entre outras...
+Este é um **malware educacional em formato `.exe`**, desenvolvido para **Windows 10**, que simula técnicas utilizadas por softwares maliciosos reais. O executável coleta diversos dados sensíveis de navegadores e do sistema operacional, com o objetivo de estudar vulnerabilidades locais e reforçar o entendimento sobre segurança digital.
 
 ---
 
-## ⚙️ Funcionalidades
+## 🔧 Funcionalidades
 
-| Módulo               | Descrição                                                                 |
-|----------------------|--------------------------------------------------------------------------|
-| Coleta de Cookies    | Acessa o banco SQLite do Opera GX e descriptografa cookies salvos        |
-| Coleta de Senhas     | Extração de senhas salvas via descriptografia da chave local             |
-| Coleta de IP         | Captura o IP público e local da máquina                                  |
-| Nome da Rede Wi-Fi   | Mostra qual rede Wi-Fi está conectada no momento                         |
-| Aplicativos Instalados | Lista todos os apps instalados com nome e caminho                      |
+- 💻 **Requisitos**: Windows 10 com **Chrome** ou **Opera GX/Stable** instalado.
+- 🔑 Coleta de **senhas salvas** no navegador.
+- 🍪 Extração de **cookies armazenados** no navegador.
+- 🌐 Coleta de:
+  - IP local e público
+  - Nome da rede Wi-Fi conectada
+  - Informações da conexão com a Internet
+- 💽 Listagem de **aplicativos instalados no sistema**
+- 📂 Armazenamento dos dados em arquivos separados (`.txt`, `.json`)
+- ⚠️ Exibe **mensagens simulando um alerta de invasão**, via:
+  - CMD (Prompt de Comando)
+  - Notepad (Bloco de Notas)
 
 ---
 
-## 🖥️ Requisitos
+## 📁 Saídas Geradas
 
-- Sistema operacional: **Windows 10 ou 11**
-- Navegador: **Opera GX instalado e ativo** (em breve terá a opção do chrome e outros navegadores)
+O programa cria documentos com os seguintes dados:
+- `senhas.txt` — senhas salvas descriptografadas
+- `cookies.txt` — cookies extraídos dos navegadores
+- `geral.txt` — IPs e conexão com a internet
+- `wifi.txt` — dados sobre a rede sem fio conectada
+- `apps.txt` — lista de programas instalados
+- `hackedby.txt` — mensagem de aviso usada pelo malware
 
-```bash
-pip install pycryptodome pypiwin32
+---
+
+## 🐍 Bibliotecas Utilizadas
+
+Projeto desenvolvido em **Python**, e convertido para `.exe` com ferramentas como **PyInstaller**.
+
+Principais bibliotecas:
+- `os`, `subprocess`, `shutil`, `json`, `base64`
+- `sqlite3`, `win32crypt`, `socket`, `platform`
+- `Crypto.Cipher` (PyCryptodome)
+
+---
+
+## ⚙️ Como Usar
+
+> ⚠️ Execute **somente em ambiente controlado ou máquina virtual.**
+
+1. Compile o script com `PyInstaller` (se quiser testar o `.py`):
+   ```bash
+   pyinstaller --noconsole --onefile malware_educacional.py
